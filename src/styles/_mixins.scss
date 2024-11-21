@@ -1,0 +1,55 @@
+@use 'sass:math';
+// @use './variables' as *;
+
+@mixin mq($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  @if $breakpoint == wide {
+    @media (min-width: 1700px) {
+      @content;
+    }
+  }
+  @if $breakpoint == ultrawide {
+    @media (min-width: 2500px) {
+      @content;
+    }
+  }
+}
+
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) + rem;
+  } @else {
+    @error 'Don\'t use units when using the rem() function; only numbers';
+  }
+}
+
+@mixin container {
+  width: min(100% - rem(16), rem(1110));
+  margin-inline: auto;
+
+  @include mq(tablet) {
+    width: min(100% - rem(40), rem(1110));
+  }
+
+  @include mq(laptop) {
+    width: min(100% - rem(40), rem(1110));
+  }
+
+  @include mq(desktop) {
+    width: min(100%, rem(1110));
+  }
+}
