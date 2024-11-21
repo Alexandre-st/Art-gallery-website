@@ -1,14 +1,19 @@
 import { animate, stagger } from 'motion';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // == Hero Section == // 
   const heroSection = document.querySelector('.hero') as HTMLElement;
   const heroBackground = heroSection.querySelector('.hero-background') as HTMLElement;
   const heroPicture = heroSection.querySelector('.hero-picture') as HTMLElement;
   const heroTitle = heroSection.querySelector('.hero-content-title') as HTMLElement;
   const heroContentText = heroSection.querySelector('.hero-content-text') as HTMLElement;
-
-  const mediaQuery = window.matchMedia("(min-width: 1024px)");
   const elementsToAnimate = [heroBackground, heroPicture, heroTitle, heroContentText];
+
+  // == Infos Section == //
+  const infoSection = document.querySelector('.infos') as HTMLElement;
+
+  // == Common == //
+  const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
   if (mediaQuery.matches) {
     // Animate each child element with stagger
