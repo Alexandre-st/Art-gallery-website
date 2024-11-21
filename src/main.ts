@@ -1,24 +1,26 @@
-import { setupCounter } from './counter.ts';
-import './style.css';
-import typescriptLogo from './typescript.svg';
-import viteLogo from '/vite.svg';
+import { animate, stagger } from 'motion';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`;
+document.addEventListener('DOMContentLoaded', () => {
+  const heroSection = document.querySelector('.hero') as HTMLElement;
+  const heroBackground = heroSection.querySelector('.hero-background') as HTMLElement;
+  const heroPicture = heroSection.querySelector('.hero-picture') as HTMLElement;
+  const heroTitle = heroSection.querySelector('.hero-content-title') as HTMLElement;
+  const heroContentText = heroSection.querySelector('.hero-content-text') as HTMLElement;
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+  const mediaQuery = window.matchMedia("(min-width: 1024px)");
+  const elementsToAnimate = [heroBackground, heroPicture, heroTitle, heroContentText];
+
+  if (mediaQuery.matches) {
+    // Animate each child element with stagger
+    animate(
+      elementsToAnimate, { 
+        opacity: [0, 1], x: [-100, 0]} as any,
+      { duration: 0.5, easing: 'ease', delay: stagger(0.3) } as any
+    );
+  } else {
+    animate(elementsToAnimate, { 
+      opacity: [0, 1], y: [100, 0]} as any, 
+      { duration: 0.5, easing: 'ease', delay: stagger(0.3) } as any
+  );
+  }
+});
