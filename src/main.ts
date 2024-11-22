@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoContent = infoSection.querySelector('.infos-content') as HTMLElement;
   const infoPicture = infoSection.querySelector('.infos-content-picture') as HTMLElement;
 
+  // == Pictures Section == //
+  const pictureSection = document.querySelector('.pictures-container') as HTMLElement;
+  const pictureLeft = pictureSection.querySelector('.pictures-left') as HTMLElement;
+  const contentRight = pictureSection.querySelector('.pictures-right') as HTMLElement;
+  const pictureRight = pictureSection.querySelector('.pictures-right-right') as HTMLElement;
+  const contentTextRight = pictureSection.querySelector('.pictures-content') as HTMLElement;
+
   // == Common == //
   const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
@@ -51,6 +58,45 @@ document.addEventListener('DOMContentLoaded', () => {
       animate(infoContent, { 
         opacity: [0, 1], x: [200, 0] },
         { duration: 0.5, easing: "ease" } as any
+      );
+    });
+  }
+
+  // Animate pictures section
+  if (mediaQuery.matches) {
+    inView(pictureLeft, () => {      
+      animate(pictureLeft, { 
+        opacity: [0, 1], x: [-200, 0] },
+        { duration: 0.5, easing: "ease" } as any
+      );
+    });
+    inView(contentRight, () => {
+      animate(pictureRight, { 
+        opacity: [0, 1], y: [-100, 0] },
+        { duration: 0.5, easing: "ease" } as any
+      );
+
+      animate(contentTextRight, {
+        opacity: [0, 1], y: [-100, 0], zIndex: -1},
+        { duration: 0.5, delay: 0.3, easing: "ease", } as any
+      );
+    });
+  } else {
+    inView(pictureLeft, () => {      
+      animate(pictureLeft, { 
+        opacity: [0, 1], x: [-50, 0] },
+        { duration: 0.5, easing: "ease" } as any
+      );
+    });
+    inView(contentRight, () => {
+      animate(pictureRight, { 
+        opacity: [0, 1], y: [-50, 0] },
+        { duration: 0.5, easing: "ease" } as any
+      );
+
+      animate(contentTextRight, {
+        opacity: [0, 1], y: [-100, 0], zIndex: -1},
+        { duration: 0.5, delay: 0.3, easing: "ease", } as any
       );
     });
   }
