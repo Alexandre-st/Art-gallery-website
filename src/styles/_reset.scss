@@ -16,6 +16,10 @@ body {
   position: relative;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h1,h2,h3 {
   font-family: 'Big Shoulders Display', display;
   font-weight: 900;

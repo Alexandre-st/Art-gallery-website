@@ -235,12 +235,8 @@
       }
     }
 
-    // &-picture {
-    //   @include mq(tablet) {
-    //     img {
-    //       flex: 1;
-    //     }
-    //   }
-    // }
+    &-content, &-content-picture {
+      will-change: transform, opacity;
+    }
   }
 }
